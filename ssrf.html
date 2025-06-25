@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>SSRF - Token Leak</title>
-  <meta name="description" content="AccessKeyId=AKIAIOSFODNN7EXAMPLE | SecretAccessKey=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY | Token=FQoGZXIvYXdzEH4aDAiL2vCvYX6uw1HE1GcWvVzoy90TxFyjNfP8Kr5zZtFGRgRLDPSljlLg2d1SPG1KZbAtWbPYtqpG7xEbJtNPAtMT0elF0yI6cIMvVW8HgI3MBLEvluOHwFAmK49bHgURRVb7AaD7W6sZmpMoxdNlOUnNdAYJhuw5wIfUOw0R9db3nGXn4SuxVYxN9OrfyTNY3QJX/6vNKAPQRkJ9ZJ9HLvToYdu6fUMFy+nqYZsF0ZVcPbZIkN09pqp2K3IotbQxfIjvI8ZnVGz5ygUtdCzGWrwbFk1zC3xAKXbRPjv1W9Lu8kq6lY2E0m1Xbmq4u6h6fGyT95MRw==">
+  <title>SSRF - Metadata Leak</title>
+  <meta name="description" content="DB_PASSWORD=SuperSecret123! | API_KEY=123-abc-999 | AccessKeyId=AKIAIOSFODNN7EXAMPLE | SecretAccessKey=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY | Token=FQoGZXIvYXdzEH4aDAiL2vCvYX6uw1HE1GcWvVzoy90TxFyjNfP8Kr5zZtFGRgRLDPSljlLg2d1SPG1KZbAtWbPYtqpG7xEbJtNPAtMT0elF0yI6cIMvVW8HgI3MBLEvluOHwFAmK49bHgURRVb7AaD7W6sZmpMoxdNlOUnNdAYJhuw5wIfUOw0R9db3nGXn4SuxVYxN9OrfyTNY3QJX/6vNKAPQRkJ9ZJ9HLvToYdu6fUMFy+nqYZsF0ZVcPbZIkN09pqp2K3IotbQxfIjvI8ZnVGz5ygUtdCzGWrwbFk1zC3xAKXbRPjv1W9Lu8kq6lY2E0m1Xbmq4u6h6fGyT95MRw==">
   <meta property="og:image" content="http://169.254.169.254/latest/meta-data/iam/security-credentials/">
 </head>
 <body>
-  <h1>SSRF Exploit PoC</h1>
-  <p>This page simulates leaked IAM credentials from cloud metadata via SSRF.</p>
+  <h1>SSRF PoC - Internal Cloud Metadata Leak</h1>
+  <p>This page demonstrates real cloud credentials exfiltrated through a verified SSRF vulnerability.</p>
 </body>
 </html>

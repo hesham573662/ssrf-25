@@ -2,52 +2,22 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>XSS Data Exfiltration PoC</title>
-
-  <!-- بيانات مزروعة لتأكيد التسريب -->
-  <meta name="iam-role" content="Test-IAM-Role-987654321">
-  <script>
-    // محاكاة بيانات محلية في LocalStorage
-    localStorage.setItem("debug_token", "eyJhbGciOi...DemoToken123");
-    document.cookie = "fake_session=xyz123abc; path=/";
-  </script>
-
-  <style>
-    body {
-      background: #111;
-      color: #0f0;
-      font-family: monospace;
-      padding: 2rem;
-    }
-    h1 { color: #f33; }
-    .data { margin-top: 1rem; white-space: pre-wrap; }
-  </style>
+  <title>XSS PoC - Demo</title>
 </head>
-<body>
-  <h1>🕵️ XSS PoC - Data Leak Demo</h1>
-  <p>يتم الآن استخراج البيانات المزروعة لغرض إثبات التسريب...</p>
+<body style="background-color: black; color: white; font-family: monospace;">
+  <h1 style="color: red;">🧠 XSS PoC - Data Leak Demo</h1>
+  <p style="color: green;">يتم الآن استخراج البيانات الضرورية لعرض إثبات التسريب...</p>
 
-  <div class="data" id="output"></div>
+  <div id="xss-container"></div>
 
   <script>
-    function safe(val) {
-      return val || "[غير متوفرة]";
+    const params = new URLSearchParams(window.location.search);
+    const input = params.get("input");
+
+    if (input) {
+      // عرض الكود داخل الصفحة وتنفيذه
+      document.getElementById("xss-container").innerHTML = input;
     }
-
-    const metaRole = document.querySelector('meta[name="iam-role"]');
-    const iamRole = metaRole ? metaRole.content : null;
-    const cookie = document.cookie;
-    const token = localStorage.getItem("debug_token");
-
-    const report = `
-🔐 IAM Role: ${safe(iamRole)}
-🍪 Cookie: ${safe(cookie)}
-📦 LocalStorage Token: ${safe(token)}
-✅ Status: Exploited via DOM-based XSS
-`;
-
-    document.getElementById("output").textContent = report;
-    console.log("[XSS PoC] Extracted data:", report);
   </script>
 </body>
 </html>

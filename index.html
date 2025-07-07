@@ -1,11 +1,40 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>IAM Role Name Leak</title>
-    <meta name="description" content="IAM ROLE">
-    <meta property="og:image" content="http://169.254.169.254/latest/meta-data/iam/security-credentials/" />
-  </head>
-  <body>
-    <h1>Extracting IAM Role Name...</h1>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>XSS Proof of Concept</title>
+  <style>
+    body { font-family: sans-serif; background-color: #f5f5f5; padding: 20px; }
+    .output { background: #fff; padding: 15px; border: 1px solid #ccc; margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <h1>🛡️ اختبار XSS - Proof of Concept</h1>
+  <p>استخدم الرابط وأدخل معلمة مثل:</p>
+  <code>?input=&lt;script&gt;alert('XSS')&lt;/script&gt;</code>
+
+  <div class="output" id="output">
+    لم يتم إدخال أي بيانات بعد.
+  </div>
+
+  <script>
+    // قراءة جميع معلمات URL
+    const params = new URLSearchParams(window.location.search);
+    const input = params.get('input');
+
+    // طباعة في الصفحة (غير آمن عن قصد)
+    if (input) {
+      document.getElementById('output').innerHTML = "نتيجة الإدخال: " + input;
+
+      // ✅ محاكاة استغلال XSS (اختياري – فعال فقط لو تم إدخال JavaScript)
+      try {
+        console.log("[XSS PoC] Trying to evaluate input...");
+        // تقييم الإدخال (تحذير: خطير ومجرد محاكاة)
+        // eval(input); ← نُعلّقه لتجنب الخطر على بيئات فعلية
+      } catch (err) {
+        console.warn("Execution failed:", err);
+      }
+    }
+  </script>
+</body>
 </html>

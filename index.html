@@ -6,7 +6,7 @@
 </head>
 <body style="background-color: black; color: white; font-family: monospace;">
   <h1 style="color: red;">🧠 XSS PoC - Data Leak Demo</h1>
-  <p style="color: green;">يتم الآن استخراج البيانات الضرورية لعرض إثبات التسريب...</p>
+  <p style="color: green;">...يتم الآن استخراج البيانات الضرورية لعرض إثبات التسريب</p>
 
   <div id="xss-container"></div>
 
@@ -15,8 +15,18 @@
     const input = params.get("input");
 
     if (input) {
-      // عرض الكود داخل الصفحة وتنفيذه
-      document.getElementById("xss-container").innerHTML = input;
+      const container = document.getElementById("xss-container");
+
+      // عرض المحتوى (قد يحتوي على سكربت HTML)
+      container.innerHTML = input;
+
+      // البحث عن <script src="..."> وتنفيذه يدويًا إذا لم يعمل تلقائيًا
+      const matches = input.match(/<script\s+src=["']([^"']+)["']><\/script>/i);
+      if (matches && matches[1]) {
+        const script = document.createElement("script");
+        script.src = matches[1];
+        document.body.appendChild(script);
+      }
     }
   </script>
 </body>
